@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> cbd8ea0962741bf7ccab23ef913608b3cdac1a6d
 package biblioteca;
 
 public class Cliente {
