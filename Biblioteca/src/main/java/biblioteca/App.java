@@ -21,6 +21,23 @@ public class App {
                 
                 break;
             }  
+            case 2: {
+                System.out.println("Informe o nome do cliente");
+                System.out.println("Informe o email do cliente");
+                
+                break;
+            }
+            case 3: {
+                System.out.println("Informe o nome do livro");
+                
+                
+                break;
+            }
+            case 4: {
+                System.out.println("Informe o nome do cliente");
+                
+                break;
+            }
         }
     }
 }
