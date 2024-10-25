@@ -19,6 +19,7 @@ public class App {
                 System.out.println("Informe os autores do livro");
                 System.out.println("Informe o ano de publicação do livro");
                 
+                break;
             }  
         }
     }
