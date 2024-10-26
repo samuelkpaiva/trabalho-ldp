@@ -36,4 +36,9 @@ public class Livros {
     public void setnumExemplares(){
     this.numExemplares = numExemplares;
     }
+    @Override
+    public String toString() {
+        return "Titulo: " + this.titulo + "Autores: " + this.autores; 
+    }
+    
 }
