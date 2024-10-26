@@ -28,14 +28,33 @@ public class App {
                 break;
             }
             case 3: {
-                System.out.println("Informe o nome do livro");
+                System.out.println("Digite " + "\n" 
+                        + "1 para empréstimo" + "\n" 
+                        + "2 para devolução");
+                int emp_dev = scanner.nextInt();
                 
-                
+                if(emp_dev == 1){
+                    System.out.println("Informe a data de empréstimo");
+                    System.out.println("Informe o código do livro");
+                } else {
+                    System.out.println("Informe o código do livro");
+                }
                 break;
             }
             case 4: {
-                System.out.println("Informe o nome do cliente");
+                System.out.println("Digite " + "\n" 
+                        + "1 para vizualizar clientes cadastrados" + "\n" 
+                        + "2 para vizualizar livros cadastrados" + "\n" 
+                        + "3 para vizualizar empréstimos cadastrados");
+                int opc_vizu = scanner.nextInt();
                 
+                if(opc_vizu == 1){
+                    
+                } else if(opc_vizu == 2){
+                    
+                } else {
+                    
+                }
                 break;
             }
         }
