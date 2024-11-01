@@ -40,5 +40,35 @@ public class Livros {
     public String toString() {
         return "Titulo: " + this.titulo + "Autores: " + this.autores; 
     }
-    
+     // Método para adicionar livro
+    public static boolean adicionarLivro(Livros[] livros, String titulo, String autores, String anoPublicacao, int numExemplares) {
+        for (int i = 0; i < livros.length; i++) {
+            if (livros[i] == null) { // Encontrou um espaço vazio
+                livros[i] = new Livros(titulo, autores, anoPublicacao, numExemplares);
+                return true; // Livro adicionado com sucesso
+            }
+        }
+        return false; // Sem espaço disponível
+    }
+   // Método para listar livros
+    public static void listarLivros(Livros[] livros) {
+        System.out.println("Livros cadastrados:");
+        for (Livros livro : livros) {
+            if (livro != null) {
+                System.out.println(livro.gettitulo());
+            }
+        }
+    }
+
+    // Método para remover livro
+    public static boolean removerLivro(Livros[] livros, int idParaRemover) {
+        if (idParaRemover > 0 && idParaRemover <= livros.length && livros[idParaRemover - 1] != null) {
+            livros[idParaRemover - 1] = null; // Remove o livro
+            System.out.println("Livro removido com sucesso.");
+            return true;
+        } else {
+            System.out.println("ID inválido ou livro não encontrado.");
+            return false;
+        }
+    }
 }

@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int contadorLivro = 0, contadorCliente = 0, contadorEmprestimo = 0;
         Cliente[] clientes = new Cliente[3];
         Livros[] livros = new Livros[3];
         String[] emprestimos = new String[3]; // Array para armazenar os empréstimos
+        int  contadorLivro = 0, contadorCliente = 0, contadorEmprestimo = 0;
 
         int opcao;
         do {
@@ -23,7 +23,7 @@ public class App {
 
             switch (opcao) {
                 case 1: {
-                    if (contadorLivro < livros.length) {
+                   if (contadorLivro < livros.length) {
                         System.out.println("Informe o título do livro:");
                         String titulo = scanner.nextLine();
 
@@ -41,11 +41,21 @@ public class App {
                         contadorLivro++;
                     } else {
                         System.out.println("Limite de livros atingido.");
+                        System.out.println("Deseja apagar algum livro? S ou N");
+                        String resposta = scanner.nextLine();
+                        if (resposta.equalsIgnoreCase("S")) {
+                            Livros.listarLivros(livros);
+                            System.out.println("Digite o ID do livro que deseja remover:");
+                            int idParaRemover = scanner.nextInt();
+                            scanner.nextLine(); // Limpar o buffer
+                            Livros.removerLivro(livros, contadorLivro);
+                            contadorLivro--;
+                        }
                     }
                     break;
                 }
                 case 2: {
-                    if (contadorCliente < clientes.length) {
+                   if (contadorCliente < clientes.length) {
                         System.out.println("Informe o nome do cliente:");
                         String nome = scanner.nextLine();
 
@@ -58,9 +68,20 @@ public class App {
                         contadorCliente++;
                     } else {
                         System.out.println("Limite de clientes atingido.");
+                        System.out.println("Deseja apagar algum cliente? S ou N");
+                        String resposta = scanner.nextLine();
+                        if (resposta.equalsIgnoreCase("S")) {
+                            Cliente.listarClientes(clientes);
+                            System.out.println("Digite o ID do cliente que deseja remover:");
+                            int idParaRemover = scanner.nextInt();
+                            scanner.nextLine(); // Limpar o buffer
+                            Cliente.removerCliente(clientes,contadorCliente);
+                            contadorCliente--;
+                        }
                     }
                     break;
                 }
+                
                 case 3: {
                     if (contadorEmprestimo < emprestimos.length) {
                         System.out.println("Digite " + "\n" 
@@ -96,17 +117,9 @@ public class App {
                     scanner.nextLine(); // Limpar o buffer
 
                     if (opcVizu == 1) {
-                        for (Cliente cliente : clientes) {
-                            if (cliente != null) {
-                                System.out.println("Cliente: " + cliente.getNome() + ", Email: " + cliente.getEmail());
-                            }
-                        }
+                        Cliente.listarClientes(clientes);
                     } else if (opcVizu == 2) {
-                        for (Livros livro : livros) {
-                            if (livro != null) {
-                                System.out.println(livro); // Usa o método toString
-                            }
-                        }
+                        Livros.listarLivros(livros);
                     } else if (opcVizu == 3) {
                         for (String emprestimo : emprestimos) {
                             if (emprestimo != null) {
