@@ -164,6 +164,6 @@ public class App {
                     System.out.println("Opção inválida.");
             }
         } while (opcao != 6);
-        scanner.close(); // Fechar o scanner
-    }
+        scanner.close(); // Fechar o scanner
+    }
 }
