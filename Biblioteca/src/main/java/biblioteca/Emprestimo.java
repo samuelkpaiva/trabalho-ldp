@@ -11,7 +11,6 @@ public class Emprestimo {
         this.livro = livro;
         this.dataEmprestimo = dataEmprestimo;
         
-        // Realiza o empréstimo, caso tenha exemplares disponíveis
         if (!livro.emprestarExemplar()) {
             System.out.println("Empréstimo não realizado. Sem exemplares disponíveis.");
         } else {
