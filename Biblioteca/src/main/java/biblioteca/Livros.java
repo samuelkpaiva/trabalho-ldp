@@ -71,4 +71,18 @@ public class Livros {
             return false;
         }
     }
+
+    public boolean emprestarExemplar(){
+       if (numExemplares > 0) {
+           numExemplares--;
+            return true;
+        } else {
+           System.out.println("Não há exemplares disponíveis para empréstimo.");
+           return false;
+       }
+    }
+ 
+    public void devolverExemplar() {
+        numExemplares++;
+    }
 }
