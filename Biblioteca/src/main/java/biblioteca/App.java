@@ -7,23 +7,24 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         Cliente[] clientes = new Cliente[3];
         Livros[] livros = new Livros[3];
-        String[] emprestimos = new String[3]; // Array para armazenar os empréstimos
-        int  contadorLivro = 0, contadorCliente = 0, contadorEmprestimo = 0;
+        Emprestimo[] emprestimos = new Emprestimo[3];
+        int contadorLivro = 0, contadorCliente = 0, contadorEmprestimo = 0;
 
         int opcao;
         do {
             System.out.println("Selecione uma opção");
             System.out.println("1 - Cadastrar Livro" 
                     + "\n" + "2 - Cadastrar Cliente" 
-                    + "\n" + "3 - Realizar empréstimo ou devolução" 
-                    + "\n" + "4 - Verificar clientes, livros ou empréstimos cadastrados"
-                    + "\n" + "5 - Sair");
+                    + "\n" + "3 - Realizar Empréstimo" 
+                    + "\n" + "4 - Realizar Devolução" 
+                    + "\n" + "5 - Verificar clientes, livros ou empréstimos cadastrados"
+                    + "\n" + "6 - Sair");
             opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer
 
             switch (opcao) {
-                case 1: {
-                   if (contadorLivro < livros.length) {
+                case 1: { // Cadastrar Livro
+                    if (contadorLivro < livros.length) {
                         System.out.println("Informe o título do livro:");
                         String titulo = scanner.nextLine();
 
@@ -48,21 +49,24 @@ public class App {
                             System.out.println("Digite o ID do livro que deseja remover:");
                             int idParaRemover = scanner.nextInt();
                             scanner.nextLine(); // Limpar o buffer
-                            Livros.removerLivro(livros, contadorLivro);
-                            contadorLivro--;
+                            if (Livros.removerLivro(livros, idParaRemover)) {
+                                contadorLivro--;
+                                System.out.println("Livro removido com sucesso.");
+                            } else {
+                                System.out.println("ID inválido ou livro não encontrado.");
+                            }
                         }
                     }
                     break;
                 }
-                case 2: {
-                   if (contadorCliente < clientes.length) {
+                case 2: { // Cadastrar Cliente
+                    if (contadorCliente < clientes.length) {
                         System.out.println("Informe o nome do cliente:");
                         String nome = scanner.nextLine();
 
                         System.out.println("Informe o email do cliente:");
                         String email = scanner.nextLine();
 
-                        // Gerando um ID simples
                         int id = contadorCliente + 1;
                         clientes[contadorCliente] = new Cliente(nome, email, id);
                         contadorCliente++;
@@ -75,40 +79,64 @@ public class App {
                             System.out.println("Digite o ID do cliente que deseja remover:");
                             int idParaRemover = scanner.nextInt();
                             scanner.nextLine(); // Limpar o buffer
-                            Cliente.removerCliente(clientes,contadorCliente);
-                            contadorCliente--;
+                            if (Cliente.removerCliente(clientes, idParaRemover)) {
+                                contadorCliente--;
+                                System.out.println("Cliente removido com sucesso.");
+                            } else {
+                                System.out.println("ID inválido ou cliente não encontrado.");
+                            }
                         }
                     }
                     break;
                 }
-                
-                case 3: {
+                case 3: { // Realizar Empréstimo
                     if (contadorEmprestimo < emprestimos.length) {
-                        System.out.println("Digite " + "\n" 
-                                + "1 para empréstimo" + "\n" 
-                                + "2 para devolução");
-                        int empDev = scanner.nextInt();
+                        System.out.println("Informe o ID do cliente:");
+                        int clienteId = scanner.nextInt();
                         scanner.nextLine(); // Limpar o buffer
 
-                        if (empDev == 1) {
-                            System.out.println("Informe a data de empréstimo:");
-                            String dataEmprestimo = scanner.nextLine();
+                        if (clienteId > 0 && clienteId <= clientes.length && clientes[clienteId - 1] != null) {
+                            Cliente cliente = clientes[clienteId - 1];
 
-                            System.out.println("Informe o nome do livro:");
-                            String nomeLivro = scanner.nextLine();
+                            System.out.println("Informe o ID do livro:");
+                            int livroId = scanner.nextInt();
+                            scanner.nextLine(); // Limpar o buffer
 
-                            emprestimos[contadorEmprestimo] = "Empréstimo de " + nomeLivro + " em " + dataEmprestimo;
-                            contadorEmprestimo++;
+                            if (livroId > 0 && livroId <= livros.length && livros[livroId - 1] != null) {
+                                Livros livro = livros[livroId - 1];
+                                if (livro.emprestarExemplar()) {
+                                    emprestimos[contadorEmprestimo] = new Emprestimo(livro, "Data do Empréstimo");
+                                    contadorEmprestimo++;
+                                    System.out.println("Empréstimo realizado com sucesso!");
+                                } else {
+                                    System.out.println("Não há exemplares disponíveis para empréstimo.");
+                                }
+                            } else {
+                                System.out.println("ID de livro inválido.");
+                            }
                         } else {
-                            System.out.println("Informe o código do livro:");
-                            int codigoLivro = scanner.nextInt();
+                            System.out.println("ID de cliente inválido.");
                         }
                     } else {
                         System.out.println("Limite de empréstimos atingido.");
                     }
                     break;
                 }
-                case 4: {
+                case 4: { // Realizar Devolução
+                    System.out.println("Informe o ID do livro para devolução:");
+                    int livroId = scanner.nextInt();
+                    scanner.nextLine(); // Limpar o buffer
+
+                    if (livroId > 0 && livroId <= livros.length && livros[livroId - 1] != null) {
+                        Livros livro = livros[livroId - 1];
+                        livro.devolverExemplar();
+                        System.out.println("Livro devolvido com sucesso!");
+                    } else {
+                        System.out.println("ID de livro inválido.");
+                    }
+                    break;
+                }
+                case 5: { // Verificação
                     System.out.println("Digite " + "\n" 
                             + "1 para visualizar clientes cadastrados" + "\n" 
                             + "2 para visualizar livros cadastrados" + "\n" 
@@ -121,21 +149,21 @@ public class App {
                     } else if (opcVizu == 2) {
                         Livros.listarLivros(livros);
                     } else if (opcVizu == 3) {
-                        for (String emprestimo : emprestimos) {
+                        for (Emprestimo emprestimo : emprestimos) {
                             if (emprestimo != null) {
-                                System.out.println(emprestimo);
+                                System.out.println("Empréstimo de livro: " + emprestimo.getLivro().gettitulo());
                             }
                         }
                     }
                     break;
                 }
-                case 5:
+                case 6:
                     System.out.println("Saindo...");
                     break;
                 default:
                     System.out.println("Opção inválida.");
             }
-        } while (opcao != 5);
-        scanner.close(); // Fechar o scanner
-    }
+        } while (opcao != 6);
+        scanner.close(); // Fechar o scanner
+    }
 }
