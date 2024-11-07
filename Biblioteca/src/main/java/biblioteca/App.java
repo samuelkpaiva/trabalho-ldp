@@ -147,6 +147,12 @@ public class App {
                     System.out.println("Informe o título do livro para devolução:");
                     String tituloLivro = scanner.nextLine();
 
+                    System.out.println("Informe o nome do cliente que pegou o livro:");
+                    String nomeCliente = scanner.nextLine();
+
+                    System.out.println("Informe a data do empréstimo:");
+                    String dataEmprestimo = scanner.nextLine();
+
                     Livros livro = null;
                     for (Livros l : livros) {
                         if (l != null && l.titulo.equalsIgnoreCase(tituloLivro)) {
@@ -154,24 +160,28 @@ public class App {
                             break;
                         }
                     }
-                    if (livro != null) {
-                        livro.devolverExemplar();
-                        System.out.println("Livro devolvido");
 
-                        boolean emprestimoRemovido = false;
+                    if (livro != null) {
+                        boolean emprestimoEncontrado = false;
                         for (int i = 0; i < emprestimos.length; i++) {
-                            if (emprestimos[i] != null && emprestimos[i].getLivro().titulo.equalsIgnoreCase(tituloLivro)) {
+                            if (emprestimos[i] != null 
+                                && emprestimos[i].getLivro().titulo.equalsIgnoreCase(tituloLivro)
+                                && emprestimos[i].getCliente().getNome().equalsIgnoreCase(nomeCliente)
+                                && emprestimos[i].getDataEmprestimo().equals(dataEmprestimo)) {
+
+                                livro.devolverExemplar();
+                                System.out.println("Livro devolvido");
+
                                 emprestimos[i] = null;
-                                emprestimoRemovido = true;
                                 contadorEmprestimo--;
+                                emprestimoEncontrado = true;
+                                System.out.println("Empréstimo removido");
                                 break;
                             }
                         }
 
-                        if (emprestimoRemovido) {
-                            System.out.println("Empréstimo removido");
-                        } else {
-                            System.out.println("Empréstimo não encontrado");
+                        if (!emprestimoEncontrado) {
+                            System.out.println("Empréstimo não encontrado para esse cliente, livro e data.");
                         }
                     } else {
                         System.out.println("Livro não encontrado.");
