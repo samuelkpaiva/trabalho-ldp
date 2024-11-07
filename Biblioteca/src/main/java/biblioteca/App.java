@@ -61,7 +61,7 @@ public class App {
                         System.out.println("Limite de livros atingido.");
                         System.out.println("Deseja apagar algum livro? S ou N");
                         String resposta = scanner.nextLine();
-                        if (resposta.equalsIgnoreCase("S")) {
+                        if (resposta.equalsIgnoreCase("S") || resposta.equalsIgnoreCase("sim")) {
                             Livros.listaLivros(livros);
                             System.out.println("Digite o título do livro que deseja remover:");
                             String tituloParaRemover = scanner.nextLine();
@@ -87,7 +87,7 @@ public class App {
                         System.out.println("Limite de clientes atingido.");
                         System.out.println("Deseja apagar algum cliente? S ou N");
                         String resposta = scanner.nextLine();
-                        if (resposta.equalsIgnoreCase("S")) {
+                        if (resposta.equalsIgnoreCase("S") || resposta.equalsIgnoreCase("sim")) {
                             Cliente.listaClientes(clientes);
                             System.out.println("Digite o ID do cliente que deseja remover:");
                             int idParaRemover = scanner.nextInt();
