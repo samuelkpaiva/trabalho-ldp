@@ -26,7 +26,7 @@ public class Salvamentos {
             writer.println("Empréstimos Ativos:");
             for (Emprestimo emprestimo : emprestimos) {
                 if (emprestimo != null) {
-                    writer.println("Livro: " + emprestimo.getLivro().titulo + ", Data: " + emprestimo.getDataEmprestimo());
+                    writer.println("Livro: " + emprestimo.getLivro().titulo + ", Cliente: " + emprestimo.getCliente().getNome() + ", Data: " + emprestimo.getDataEmprestimo());
                 }
             }
 

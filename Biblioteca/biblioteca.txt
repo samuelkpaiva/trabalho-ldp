@@ -1,0 +1,8 @@
+Clientes Cadastrados:
+ID: 1, Nome: s, Email: s
+
+Livros Cadastrados:
+Título: a, Autor: a, Ano: a, Exemplares: 1
+
+Empréstimos Ativos:
+Livro: a, Cliente: s, Data: 23
