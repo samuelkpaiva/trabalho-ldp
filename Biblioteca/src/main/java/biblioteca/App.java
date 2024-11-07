@@ -62,7 +62,7 @@ public class App {
                         System.out.println("Deseja apagar algum livro? S ou N");
                         String resposta = scanner.nextLine();
                         if (resposta.equalsIgnoreCase("S") || resposta.equalsIgnoreCase("sim")) {
-                            Livros.listaLivros(livros);
+                            Livros.listarLivros(livros);
                             System.out.println("Digite o título do livro que deseja remover:");
                             String tituloParaRemover = scanner.nextLine();
                             if (Livros.removerLivro(livros, tituloParaRemover)) {
@@ -88,7 +88,7 @@ public class App {
                         System.out.println("Deseja apagar algum cliente? S ou N");
                         String resposta = scanner.nextLine();
                         if (resposta.equalsIgnoreCase("S") || resposta.equalsIgnoreCase("sim")) {
-                            Cliente.listaClientes(clientes);
+                            Cliente.listarClientes(clientes);
                             System.out.println("Digite o ID do cliente que deseja remover:");
                             int idParaRemover = scanner.nextInt();
                             scanner.nextLine();
@@ -197,9 +197,9 @@ public class App {
                     scanner.nextLine();
 
                     if (opcVizu == 1) {
-                        Cliente.listaClientes(clientes);
+                        Cliente.listarClientes(clientes);
                     } else if (opcVizu == 2) {
-                        Livros.listaLivros(livros);
+                        Livros.listarLivros(livros);
                     } else if (opcVizu == 3) {
                         Emprestimo.listaEmprestimos(emprestimos);
                     }
