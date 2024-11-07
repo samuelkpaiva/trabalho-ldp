@@ -36,10 +36,7 @@ public class Livros {
     public void setnumExemplares(){
     this.numExemplares = numExemplares;
     }
-    @Override
-    public String toString() {
-        return "Titulo: " + this.titulo + "Autores: " + this.autores; 
-    }
+    
      // Método para adicionar livro
     public static boolean adicionarLivro(Livros[] livros, String titulo, String autores, String anoPublicacao, int numExemplares) {
         for (int i = 0; i < livros.length; i++) {
