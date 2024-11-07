@@ -7,19 +7,31 @@ public class Emprestimo {
     public Livros getLivro() {
         return livro;
     }
+    
+    public String getDataEmprestimo(){
+        return dataEmprestimo;
+    }
+    
     public Emprestimo(Livros livro, String dataEmprestimo) {
         this.livro = livro;
         this.dataEmprestimo = dataEmprestimo;
-        
-        if (!livro.emprestarExemplar()) {
-            System.out.println("Empréstimo não realizado. Sem exemplares disponíveis.");
-        } else {
-            System.out.println("Empréstimo realizado com sucesso!");
+    }
+    public static void listarEmprestimos(Emprestimo[] emprestimos) {
+    System.out.println("Empréstimos realizados:");
+    boolean encontrouEmprestimos = false; // Para verificar se há empréstimos
+    for (Emprestimo emprestimo : emprestimos) {
+        if (emprestimo != null) {
+            System.out.println("Livro: " + emprestimo.getLivro().gettitulo() + " - Data do Empréstimo: " + emprestimo.getDataEmprestimo());
+            encontrouEmprestimos = true;
         }
     }
 
+    if (!encontrouEmprestimos) {
+        System.out.println("Nenhum empréstimo realizado.");
+    }
+}
     public void devolver() {
         livro.devolverExemplar();
         System.out.println("Livro devolvido com sucesso!");
-    }
+    }
 }
