@@ -23,7 +23,7 @@ public class Emprestimo {
         return cliente;
     }
 
-    public static void listarEmprestimos(Emprestimo[] emprestimos) {
+    public static void listaEmprestimos(Emprestimo[] emprestimos) {
         System.out.println("Empréstimos realizados:");
         boolean encontrouEmprestimos = false;
         for (Emprestimo emprestimo : emprestimos) {

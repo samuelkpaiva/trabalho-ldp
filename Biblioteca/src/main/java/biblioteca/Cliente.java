@@ -24,7 +24,7 @@ public class Cliente {
         return id;
     }
 
-    public static void listarClientes(Cliente[] clientes) {
+    public static void listaClientes(Cliente[] clientes) {
         System.out.println("Clientes cadastrados:");
         for (Cliente cliente : clientes) {
             if (cliente != null) {

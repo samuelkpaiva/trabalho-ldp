@@ -62,7 +62,7 @@ public class App {
                         System.out.println("Deseja apagar algum livro? S ou N");
                         String resposta = scanner.nextLine();
                         if (resposta.equalsIgnoreCase("S")) {
-                            Livros.listarLivros(livros);
+                            Livros.listaLivros(livros);
                             System.out.println("Digite o título do livro que deseja remover:");
                             String tituloParaRemover = scanner.nextLine();
                             if (Livros.removerLivro(livros, tituloParaRemover)) {
@@ -88,7 +88,7 @@ public class App {
                         System.out.println("Deseja apagar algum cliente? S ou N");
                         String resposta = scanner.nextLine();
                         if (resposta.equalsIgnoreCase("S")) {
-                            Cliente.listarClientes(clientes);
+                            Cliente.listaClientes(clientes);
                             System.out.println("Digite o ID do cliente que deseja remover:");
                             int idParaRemover = scanner.nextInt();
                             scanner.nextLine();
@@ -197,16 +197,16 @@ public class App {
                     scanner.nextLine();
 
                     if (opcVizu == 1) {
-                        Cliente.listarClientes(clientes);
+                        Cliente.listaClientes(clientes);
                     } else if (opcVizu == 2) {
-                        Livros.listarLivros(livros);
+                        Livros.listaLivros(livros);
                     } else if (opcVizu == 3) {
-                        Emprestimo.listarEmprestimos(emprestimos);
+                        Emprestimo.listaEmprestimos(emprestimos);
                     }
                     break;
                 }
                 case 6: {
-                    Salvamentos.salvarDadosEmArquivo(clientes, livros, emprestimos);
+                    Salvamentos.salvarDados(clientes, livros, emprestimos);
                     break;
                 }
             }

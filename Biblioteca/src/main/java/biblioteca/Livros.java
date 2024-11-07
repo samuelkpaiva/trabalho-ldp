@@ -21,7 +21,7 @@ public class Livros {
         this.numExemplares = numExemplares;
     }
     
-    public static void listarLivros(Livros[] livros) {
+    public static void listaLivros(Livros[] livros) {
         System.out.println("Livros cadastrados:");
         for (Livros livro : livros) {
             if (livro != null) {
