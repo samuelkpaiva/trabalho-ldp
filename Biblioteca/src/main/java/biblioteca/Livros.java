@@ -1,17 +1,18 @@
 package biblioteca;
 
+
 public class Livros {
-  private String titulo;
-   private String autores;
-   private String anoPublicacao;
-   private int numExemplares;
-   
-    public Livros(String titulo,String autores,String anoPublicacao,int numExemplares){
+    private String titulo;
+    private String autores;
+    private String anoPublicacao;
+    private int numExemplares;
+
+    public Livros(String titulo, String autores, String anoPublicacao, int numExemplares) {
         this.titulo = titulo;
         this.autores = autores;
         this.anoPublicacao = anoPublicacao;
         this.numExemplares = numExemplares;
-    } 
+    }
     public String gettitulo(){
     return this.titulo;
     }
@@ -57,17 +58,23 @@ public class Livros {
         }
     }
 
-    // Método para remover livro
-    public static boolean removerLivro(Livros[] livros, int idParaRemover) {
-        if (idParaRemover > 0 && idParaRemover <= livros.length && livros[idParaRemover - 1] != null) {
-            livros[idParaRemover - 1] = null; // Remove o livro
+    // Método para remover livro com ajuste na ordem dos livros no array
+public static boolean removerLivro(Livros[] livros, String tituloParaRemover) {
+    for (int i = 0; i < livros.length; i++) {
+        if (livros[i] != null && livros[i].gettitulo().equalsIgnoreCase(tituloParaRemover)) {
+            // Move todos os livros após o índice i uma posição para a esquerda
+            for (int j = i; j < livros.length - 1; j++) {
+                livros[j] = livros[j + 1];
+            }
+            livros[livros.length - 1] = null; // Define o último elemento como null
             System.out.println("Livro removido com sucesso.");
             return true;
-        } else {
-            System.out.println("ID inválido ou livro não encontrado.");
-            return false;
         }
     }
+    System.out.println("Livro não encontrado com esse título.");
+    return false;
+}
+
 
     public boolean emprestarExemplar(){
        if (numExemplares > 0) {
@@ -81,5 +88,6 @@ public class Livros {
  
     public void devolverExemplar() {
         numExemplares++;
-    }
+        
+    }
 }
