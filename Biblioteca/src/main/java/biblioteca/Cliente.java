@@ -1,7 +1,6 @@
 package biblioteca;
 
 public class Cliente {
-
     private String nome;
     private String email;
     private int id;
@@ -25,17 +24,6 @@ public class Cliente {
         return id;
     }
 
-    public static boolean adicionarCliente(Cliente[] clientes, String nome, String email) {
-        for (int i = 0; i < clientes.length; i++) {
-            if (clientes[i] == null) {
-                int id = i + 1;
-                clientes[i] = new Cliente(nome, email, id);
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static void listarClientes(Cliente[] clientes) {
         System.out.println("Clientes cadastrados:");
         for (Cliente cliente : clientes) {
@@ -53,10 +41,10 @@ public class Cliente {
                 clientes[j] = clientes[j + 1];
             }
             clientes[clientes.length - 1] = null;
-            System.out.println("Cliente removido com sucesso.");
+            System.out.println("Cliente removido");
             return true;
         } else {
-            System.out.println("ID inválido ou cliente não encontrado.");
+            System.out.println("Cliente não encontrado.");
             return false;
         }
     }

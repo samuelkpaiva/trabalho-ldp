@@ -20,17 +20,7 @@ public class Livros {
     public void setnumExemplares(int numExemplares) {
         this.numExemplares = numExemplares;
     }
-
-    public static boolean adicionarLivro(Livros[] livros, String titulo, String autores, String anoPublicacao, int numExemplares) {
-        for (int i = 0; i < livros.length; i++) {
-            if (livros[i] == null) { 
-                livros[i] = new Livros(titulo, autores, anoPublicacao, numExemplares);
-                return true; 
-            }
-        }
-        return false;
-    }
-
+    
     public static void listarLivros(Livros[] livros) {
         System.out.println("Livros cadastrados:");
         for (Livros livro : livros) {
@@ -47,11 +37,11 @@ public class Livros {
                     livros[j] = livros[j + 1];
                 }
                 livros[livros.length - 1] = null; 
-                System.out.println("Livro removido com sucesso.");
+                System.out.println("Livro removido");
                 return true;
             }
         }
-        System.out.println("Livro não encontrado com esse título.");
+        System.out.println("Livro não encontrado");
         return false;
     }
 
