@@ -124,7 +124,9 @@ public class App {
 
                             if (livro != null) {
                                 if (livro.emprestarExemplar()) {
-                                    emprestimos[contadorEmprestimo] = new Emprestimo(livro, "Data do Empréstimo");
+                                    System.out.println("Informe a data do empréstimo:");
+                                    String dataEmprestimo = scanner.nextLine();
+                                    emprestimos[contadorEmprestimo] = new Emprestimo(livro, dataEmprestimo, cliente);
                                     contadorEmprestimo++;
                                     System.out.println("Empréstimo realizado");
                                 } else {
@@ -152,7 +154,6 @@ public class App {
                             break;
                         }
                     }
-
                     if (livro != null) {
                         livro.devolverExemplar();
                         System.out.println("Livro devolvido");

@@ -3,6 +3,13 @@ package biblioteca;
 public class Emprestimo {
     private Livros livro;
     private String dataEmprestimo;
+    private Cliente cliente;  
+
+    public Emprestimo(Livros livro, String dataEmprestimo, Cliente cliente) {
+        this.livro = livro;
+        this.dataEmprestimo = dataEmprestimo;
+        this.cliente = cliente;
+    }
 
     public Livros getLivro() {
         return livro;
@@ -12,9 +19,8 @@ public class Emprestimo {
         return dataEmprestimo;
     }
 
-    public Emprestimo(Livros livro, String dataEmprestimo) {
-        this.livro = livro;
-        this.dataEmprestimo = dataEmprestimo;
+    public Cliente getCliente() {
+        return cliente;
     }
 
     public static void listarEmprestimos(Emprestimo[] emprestimos) {
@@ -22,7 +28,9 @@ public class Emprestimo {
         boolean encontrouEmprestimos = false;
         for (Emprestimo emprestimo : emprestimos) {
             if (emprestimo != null) {
-                System.out.println("Livro: " + emprestimo.getLivro().titulo + " - Data do Empréstimo: " + emprestimo.getDataEmprestimo());
+                System.out.println("Cliente: " + emprestimo.getCliente().getNome() + " - Livro: " 
+                    + emprestimo.getLivro().titulo + " - Data do Empréstimo: " 
+                    + emprestimo.getDataEmprestimo());
                 encontrouEmprestimos = true;
             }
         }
