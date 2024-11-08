@@ -54,13 +54,13 @@ public class App {
                             String anoPublicacao = scanner.nextLine();
 
                             int numExemplares = 0;
-                            boolean validExemplares = false;
-                            while (!validExemplares) {
+                            boolean validarExemplares = false;
+                            while (!validarExemplares) {
                                 try {
                                     System.out.println("Informe o número de exemplares do livro:");
                                     numExemplares = scanner.nextInt();
                                     scanner.nextLine();
-                                    validExemplares = true;
+                                    validarExemplares = true;
                                 } catch (InputMismatchException e) {
                                     System.out.println("Entrada inválida. Por favor, digite um número inteiro para o número de exemplares.");
                                     scanner.nextLine(); // Limpa a entrada inválida
@@ -103,13 +103,13 @@ public class App {
                                 Cliente.listarClientes(clientes);
 
                                 int idParaRemover = 0;
-                                boolean validId = false;
-                                while (!validId) {
+                                boolean validarId = false;
+                                while (!validarId) {
                                     try { // impede o usuario de digitar um caracter
                                         System.out.println("Digite o ID do cliente que deseja remover:");
                                         idParaRemover = scanner.nextInt();
                                         scanner.nextLine();
-                                        validId = true;
+                                        validarId = true;
                                     } catch (InputMismatchException e) {
                                         System.out.println("Entrada inválida. Por favor, digite um número inteiro para o ID do cliente.");
                                         scanner.nextLine(); // Limpa a entrada inválida
@@ -129,13 +129,13 @@ public class App {
                     case 3: //realizar emprestimo
                         if (contadorEmprestimo < emprestimos.length) {
                             int clienteId = 0;
-                            boolean validClienteId = false;
-                            while (!validClienteId) {
+                            boolean validarClienteId = false;
+                            while (!validarClienteId) {
                                 try { // impede o usuario de digitar um caracter
                                     System.out.println("Informe o ID do cliente:");
                                     clienteId = scanner.nextInt();
                                     scanner.nextLine();
-                                    validClienteId = true;
+                                    validarClienteId = true;
                                 } catch (InputMismatchException e) {
                                     System.out.println("Entrada inválida. Por favor, digite um número inteiro para o ID do cliente.");
                                     scanner.nextLine(); // Limpa a entrada inválida
@@ -228,13 +228,25 @@ public class App {
                         }
                         break;
 
-                    case 5: // verificaçao de clientes, livros ou empréstimos cadastrados
+                    case 5: // verificação de clientes, livros ou empréstimos cadastrados
                         System.out.println("Digite " + "\n"
-                                + "1 para visualizar clientes cadastrados" + "\n"
-                                + "2 para visualizar livros cadastrados" + "\n"
-                                + "3 para visualizar empréstimos cadastrados");
-                        int opcVizu = scanner.nextInt();
-                        scanner.nextLine();
+                        + "1 para visualizar clientes cadastrados" + "\n"
+                        + "2 para visualizar livros cadastrados" + "\n"
+                        + "3 para visualizar empréstimos cadastrados");
+
+                        int opcVizu = 0;
+                        boolean validarOpcao = false;
+
+                        while (!validarOpcao) {  
+                            try {
+                                opcVizu = scanner.nextInt();  
+                                scanner.nextLine();  
+                                validarOpcao = true; 
+                            } catch (InputMismatchException e) {  
+                            System.out.println("Por favor, digite um número válido.");
+                            scanner.nextLine();  
+                            }
+                        }
 
                         if (opcVizu == 1) {
                             Cliente.listarClientes(clientes);
@@ -242,9 +254,10 @@ public class App {
                             Livros.listarLivros(livros);
                         } else if (opcVizu == 3) {
                             Emprestimo.listaEmprestimos(emprestimos);
+                        } else {
+                            System.out.println("Opção inválida");
                         }
                         break;
-
                     case 6: // sair
                         Salvamentos.salvarDados(clientes, livros, emprestimos);
                         break;
