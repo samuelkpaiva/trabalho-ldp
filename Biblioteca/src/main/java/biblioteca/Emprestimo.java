@@ -22,7 +22,7 @@ public class Emprestimo {
     public Cliente getCliente() {
         return cliente;
     }
-
+    //Metodo que percorre os emprestimos e printa o que é diferente de vazio
     public static void listaEmprestimos(Emprestimo[] emprestimos) {
         System.out.println("Empréstimos realizados:");
         boolean encontrouEmprestimos = false;
@@ -39,12 +39,12 @@ public class Emprestimo {
             System.out.println("Nenhum empréstimo realizado.");
         }
     }
-
+    // executa o metodo devolver do livro e printa
     public void devolver() {
         livro.devolverExemplar();
         System.out.println("Livro devolvido com sucesso!");
     }
-
+    // percorre os emprestimos e o que for diferente de vazio e igual ao id do cliente informado ele da como true
     public static boolean empCadastrado(Emprestimo[] emprestimos, int clienteId) {
         for (Emprestimo emprestimo : emprestimos) {
             if (emprestimo != null && emprestimo.getCliente().getID() == clienteId) {

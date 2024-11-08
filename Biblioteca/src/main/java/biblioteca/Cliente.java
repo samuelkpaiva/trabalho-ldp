@@ -1,6 +1,7 @@
 package biblioteca;
 
 public class Cliente {
+
     private String nome;
     private String email;
     private int id;
@@ -24,6 +25,7 @@ public class Cliente {
         return id;
     }
 
+    //Metodo que percorre os clientes e printa o que diferente de vazio
     public static void listarClientes(Cliente[] clientes) {
         System.out.println("Clientes cadastrados:");
         for (Cliente cliente : clientes) {
@@ -33,19 +35,26 @@ public class Cliente {
         }
     }
 
+    //Verifica se o idTeste é igual ao idParaRemover
+   //Caso ele encontre, ele substitui o valor do idTeste para o Id que ele deseja remover, move os outros clientes para a posição anterior no vetor a partir do cliente a ser removido e coloca o último espaço como vazio para adicionar um novo cliente
     public static boolean removerCliente(Cliente[] clientes, int idParaRemover) {
-        int novoId = idParaRemover - 1;
+        int idTeste = -1;
 
-        if (novoId >= 0 && novoId < clientes.length && clientes[novoId] != null) {
-            for (int j = novoId; j < clientes.length - 1; j++) {
-                clientes[j] = clientes[j + 1];
+        for (int i = 0; i < clientes.length; i++) {
+            if (clientes[i] != null && clientes[i].getID() == idParaRemover) {
+                idTeste = i;
+                break;
             }
-            clientes[clientes.length - 1] = null;
-            System.out.println("Cliente removido");
-            return true;
-        } else {
+        }
+        if (idTeste == -1) {
             System.out.println("Cliente não encontrado.");
             return false;
         }
+        for (int j = idTeste; j < clientes.length - 1; j++) {
+            clientes[j] = clientes[j + 1];
+        }
+        clientes[clientes.length - 1] = null;
+        System.out.println("Cliente removido");
+        return true;
     }
 }
