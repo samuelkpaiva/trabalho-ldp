@@ -44,4 +44,13 @@ public class Emprestimo {
         livro.devolverExemplar();
         System.out.println("Livro devolvido com sucesso!");
     }
+
+    public static boolean empCadastrado(Emprestimo[] emprestimos, int clienteId) {
+        for (Emprestimo emprestimo : emprestimos) {
+            if (emprestimo != null && emprestimo.getCliente().getID() == clienteId) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

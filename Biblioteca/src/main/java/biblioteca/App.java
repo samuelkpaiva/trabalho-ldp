@@ -110,6 +110,13 @@ public class App {
 
                         if (clienteId > 0 && clienteId <= clientes.length && clientes[clienteId - 1] != null) {
                             Cliente cliente = clientes[clienteId - 1];
+                            
+                             // Verificar se o cliente já possui um empréstimo ativo
+                            if (Emprestimo.empCadastrado(emprestimos, clienteId)) {
+                                System.out.println("Cliente já possui um empréstimo, devolva o livro para pegar outro");
+                                    break;
+                            }
+                        
 
                             System.out.println("Informe o título do livro:");
                             String tituloLivro = scanner.nextLine();
